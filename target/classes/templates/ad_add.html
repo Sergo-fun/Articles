@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Опубликовать</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body>
+<div class="d-xl-flex justify-content-xl-center"><img src="/img/bg.jpg" style="position: fixed;" height="100%"
+                                                      width="100%">
+</div>
+<h1 class="text-center text-white d-none d-lg-block site-heading"
+    style="margin-top: 0px;padding-top: 80px;position: relative;text-shadow: 0px 0px 20px var(--bs-black);"><span
+        class="fw-semibold site-heading-lower">Опубликовать</span></h1>
+<div th:insert="blocks/nav :: nav"></div>
+<section class="page-section clearfix" style="position: relative;">
+    <div class="container">
+        <div th:if="${message}" class="row d-xl-flex justify-content-xl-center" style="margin-bottom: 20px;">
+            <div class="col-8">
+                <div class="text-center intro-text p-5 rounded bg-faded">
+                    <p class="lead" style="margin-bottom: 0" th:text="${message}"></p>
+                </div>
+            </div>
+        </div>
+        <form style="background: rgba(255,255,255,0.85);padding: 15px;margin-bottom: 20px;border-radius: 10px;"
+              action="/ads/add" method="post" enctype="multipart/form-data">
+            <div class="row mb-2">
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Название</p><input class="form-control" type="text" name="name"
+                                                                      required>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Тариф</p>
+                    <select class="form-select" required name="pricelistId">
+                        <option th:each="i : ${pricelist}" th:value="${i.id}"
+                                th:label="${i.name + ' | Количество дней: ' + i.days + ' | Цена: ' + i.price}"></option>
+                    </select>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Категория</p>
+                    <select class="form-select" required name="category">
+                        <option th:each="b : ${categories}" th:value="${b}" th:label="${b.name}"></option>
+                    </select>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Тип</p>
+                    <select class="form-select" required name="type">
+                        <option th:each="f : ${types}" th:value="${f}" th:label="${f.name}"></option>
+                    </select>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Регион</p>
+                    <select class="form-select" required name="region">
+                        <option th:each="t : ${regions}" th:value="${t}" th:label="${t.name}"></option>
+                    </select>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Картинки</p>
+                    <input class="form-control" type="file" name="photos" multiple accept="image/*" required>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Файл</p>
+                    <input class="form-control" type="file" name="file" accept="*/*" required>
+                </div>
+                <div class="col-6 mb-2">
+                    <p style="margin-bottom: 5px;">Телефон номер</p>
+                    <input class="form-control" type="tel" name="tel" required>
+                </div>
+                <div class="col-12 mb-2">
+                    <p style="margin-bottom: 5px;">Текст</p>
+                    <input class="form-control" type="text" name="description" required style="height: 100px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <button class="btn btn-success" type="submit">Опубликовать</button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-dark" type="reset">Очистить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/current-day.js"></script>
+<script src="/js/Lightbox-Gallery.js"></script>
+</body>
+
+</html>

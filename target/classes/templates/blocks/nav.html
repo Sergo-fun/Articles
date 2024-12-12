@@ -1,0 +1,22 @@
+<nav th:fragment="nav" class="navbar navbar-dark navbar-expand-lg py-lg-4" id="mainNav" style="background: rgba(14,42,108,0.95)">
+    <div class="container">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive">
+            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/" >Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">Информация о сервисе</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/stats">Аналитика</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users">Пользователи</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/ads/apps">Заявки</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/pricelist">Прайс-лист</a></li>
+                <li th:if="${role == 'CLIENT'}" class="nav-item"><a class="nav-link" href="/ads/my">Мои статьи</a></li>
+                <li th:if="${role == 'CLIENT'}" class="nav-item"><a class="nav-link" href="/ads/add">Опубликовать</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login">Вход</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/reg">Регистрация</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/logout">Выход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
